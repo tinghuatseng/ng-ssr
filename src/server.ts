@@ -12,6 +12,7 @@ const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
 
 const app = express();
+app.set('trust proxy', true);
 const angularApp = new AngularNodeAppEngine();
 
 /**
@@ -25,7 +26,6 @@ const angularApp = new AngularNodeAppEngine();
  * });
  * ```
  */
-
 /**
  * Serve static files from /browser
  */
