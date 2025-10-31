@@ -14,7 +14,7 @@ ng serve
 
 ## 程式碼鷹架
 
-Angular CLI 包含了強大的程式碼鷹架工具。若要產生一個新的元件，請執行：
+Angular CLI 包含了強大的程式碼 Schematics 工具。若要產生一個新的元件，請執行：
 
 ```bash
 ng generate component component-name
