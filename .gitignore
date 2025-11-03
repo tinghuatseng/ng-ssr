@@ -41,6 +41,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-.vscode/
-.gemini/
-.specify
+/.vscode
+/.gemini
+/.specify
