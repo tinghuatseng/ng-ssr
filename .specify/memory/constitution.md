@@ -25,6 +25,8 @@ Sync Impact Report:
    - 若需求或 API 有變更，流程必須為：
      使用者提出修改 → 更新 spec → /plan → /tasks → /implement。
    - 禁止自行修改 openapi.yaml，除非使用者明確要求。
+   - plan 設計階段請一併規劃元件 UML, data flow，並且使用 mermaid 語法撰寫，task階段必須遵守 UML 以及 data flow diagram 規劃設計。
+
 
 2. TDD/BDD（先測試，再實作）
    - 你在寫程式碼前，必須先產生測試，並確保測試通過。
@@ -48,6 +50,7 @@ Sync Impact Report:
 - Template 使用 @if、@for，不使用 *ngIf / *ngFor。
 - 不得使用 any，若不確定型別，用 unknown。
 - Imports 禁止 ../../，必須使用 tsconfig.paths alias。
+- 禁止使用非指定的第三方套件，僅能使用 typescript 原生實作，如果有特殊一定要安裝的套件，請先詢問，經過同意才能安裝。
 
 【UI / i18n / 無障礙】
 - 所有文字必須 i18n，不得硬編碼。
