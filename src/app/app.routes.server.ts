@@ -6,6 +6,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender,
   },
   {
+    path: 'food-search',
+    renderMode: RenderMode.Server,
+  },
+  {
     path: 'profile',
     renderMode: RenderMode.Server,
   },

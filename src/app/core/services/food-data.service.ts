@@ -27,7 +27,8 @@ export class FoodDataService {
           ingredientBrand: p.原料品牌,
           infoLink: p.相關資訊連結,
           calories: p.熱量大卡,
-          regionCode: p.行政區域代碼
+          regionCode: p.行政區域代碼,
+          capacity: p.容量
         } as FoodProduct))),
         take(1)
       )

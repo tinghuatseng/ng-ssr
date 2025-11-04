@@ -28,13 +28,17 @@ export class SearchBarComponent implements OnDestroy {
       distinctUntilChanged(),
       takeUntil(this.destroy$)
     ).subscribe(term => {
-      this.search.emit(term);
+      if(term) {
+        this.search.emit(term);
+      }
     });
   }
 
   onSearch(event: Event): void {
     const term = (event.target as HTMLInputElement).value;
-    this.searchTerms.next(term);
+    if(term) {
+      this.searchTerms.next(term);
+    }
   }
 
   ngOnDestroy(): void {

@@ -54,3 +54,17 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Design services around a single responsibility
 - Use the `providedIn: 'root'` option for singleton services
 - Use the `inject()` function instead of constructor injection
+
+## folder structure
+- Organize your project into subdirectories based on the features of your application or common themes to the code in those directories
+```
+src/
+├─ movie-reel/
+│ ├─ show-times/
+│ │ ├─ film-calendar/
+│ │ ├─ film-details/
+│ ├─ reserve-tickets/
+│ │ ├─ payment-info/
+│ │ ├─ purchase-confirmation/
+```
+- Avoid creating subdirectories based on the type of code that lives in those directories. For example, avoid creating directories like components, directives, and services.

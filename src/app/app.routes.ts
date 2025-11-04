@@ -4,6 +4,9 @@ export const routes: Routes = [
   {
     path: 'about',
     loadComponent: () => import('./about/about.component').then((m) => m.AboutComponent),
+  },{
+    path: 'food-search',
+    loadComponent: () => import('./features/food-search/food-search.component').then((m) => m.FoodSearchComponent),
   },
   {
     path: 'profile',
