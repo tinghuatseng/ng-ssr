@@ -41,7 +41,6 @@ app.use(
 // 取得專案路徑
 const apiDir = resolve(__dirname, '../../../api')
 
-console.log('API Directory:', apiDir);
 /**
  * Serve static files from /api
  */
