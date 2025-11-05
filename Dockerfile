@@ -29,7 +29,7 @@ COPY --from=builder /app/dist ./dist
 
 # 從 builder 階段複製 package.json 和 package-lock.json
 COPY --from=builder /app/package*.json ./
-
+COPY api ./dist/ng-ssr/server/api
 # 只安裝生產環境所需的依賴
 RUN npm install --omit=dev
 
