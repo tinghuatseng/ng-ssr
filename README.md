@@ -1,5 +1,17 @@
 # NgSsr
 
+本專案為 Angular Universal (SSR) 研究專案，旨在探索與實作伺服器端渲染技術。
+
+## 資料來源
+
+本專案使用之資料來自 [政府資料開放平臺](https://data.gov.tw/)，為公開資訊。
+
+## 授權
+
+本專案採用 [MIT License (MIT 開放使用)](./LICENSE) 進行授權。詳細內容請參閱 `LICENSE` 檔案。
+
+---
+
 本專案是使用 [Angular CLI](https://github.com/angular/angular-cli) 19.2.15 版本產生的。
 
 ## 開發伺服器
