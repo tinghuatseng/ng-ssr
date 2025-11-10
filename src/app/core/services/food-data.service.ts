@@ -1,7 +1,8 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FoodProduct } from '@app/core/models/food-product.model';
-import { map, take } from 'rxjs/operators';
+import { map, take, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,15 @@ export class FoodDataService {
   private productsSignal = signal<FoodProduct[]>([]);
   public products = this.productsSignal.asReadonly();
 
-  public fetchProducts(): void {
-    this.http.get<any[]>('/api/food-ingredients')
+  public fetchProducts(): Observable<FoodProduct[]> {
+    console.log("Fetching products from FoodDataService");
+    if( this.productsSignal().length > 0 ) {
+      return new Observable<FoodProduct[]>(subscriber => {
+        subscriber.next(this.productsSignal());
+        subscriber.complete();
+      });
+    }
+    return this.http.get<any[]>('/api/food-ingredients')
       .pipe(
         map(apiProducts => apiProducts.map(p => ({
           companyName: p.公司名稱,
@@ -27,11 +35,9 @@ export class FoodDataService {
           capacity: p.每一份量,
           index: p.index
         } as FoodProduct))),
+        tap(mappedData => this.productsSignal.set(mappedData)),
         take(1)
-      )
-      .subscribe(mappedData => {
-        this.productsSignal.set(mappedData);
-      });
+      );
   }
 
   public getProductByIndex(index: number) {

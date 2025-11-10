@@ -1,4 +1,5 @@
-<div *ngIf="product() as product; else notFound">
+@if (product(); as product) {
+<div>
   <h1>{{ product.productName }}</h1>
   <p><strong>公司名稱:</strong> {{ product.companyName }}</p>
   <p><strong>原料名稱:</strong> {{ product.ingredientName }}</p>
@@ -7,6 +8,10 @@
   <p><strong>熱量大卡:</strong> {{ product.calories }}</p>
   <p><strong>相關資訊連結:</strong> <a [href]="product.infoLink" target="_blank">點擊這裡</a></p>
 </div>
+}
+
+@else { notFound}
+
 
 <ng-template #notFound>
   <p>產品不存在或正在載入中...</p>

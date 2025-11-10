@@ -9,36 +9,21 @@ export class SearchService {
   private foodDataService = inject(FoodDataService);
   private allProducts: Signal<FoodProduct[]> = signal<FoodProduct[]>([]);
 
-  constructor() {
-
-  }
-
-  async search(term: string): Promise<FoodProduct[]> {
+  search(term: string): FoodProduct[] {
     if (!term.trim()) {
       return [];
     }
-    await this.foodDataService.fetchProducts();
     this.allProducts = this.foodDataService.products;
 
     const lowerCaseTerm = term.toLowerCase();
     const products = this.allProducts();
 
-    const results = products.filter(product =>
-      product.productName.toLowerCase().includes(lowerCaseTerm) ||
-      product.brandName.toLowerCase().includes(lowerCaseTerm)
-    );
-
-    const isBrandSearch = results.length > 0 && results.every(p =>
-      p.brandName.toLowerCase().includes(lowerCaseTerm)
-    );
-
-    if (isBrandSearch) {
-      return results.slice().sort((a, b) => {
-        if (a.productName < b.productName) return -1;
-        if (a.productName > b.productName) return 1;
-        return 0;
-      });
-    }
+    const results = products.filter(product =>{
+      return product.productName.toString().toLowerCase().includes(lowerCaseTerm) ||
+      product.brandName.toString().toLowerCase().includes(lowerCaseTerm) ||
+      product.ingredientName.toString().toLowerCase().includes(lowerCaseTerm) ||
+      product.ingredientBrand.toString().toLowerCase().includes(lowerCaseTerm)
+    });
 
     return results;
   }
