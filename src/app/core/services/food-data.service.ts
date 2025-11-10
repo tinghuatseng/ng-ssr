@@ -12,12 +12,8 @@ export class FoodDataService {
   private productsSignal = signal<FoodProduct[]>([]);
   public products = this.productsSignal.asReadonly();
 
-  constructor() {
-    this.fetchProducts();
-  }
-
-  private fetchProducts(): void {
-    this.http.get<any[]>('/api/food-ingredients.json')
+  public fetchProducts(): void {
+    this.http.get<any[]>('/api/food-ingredients')
       .pipe(
         map(apiProducts => apiProducts.map(p => ({
           companyName: p.公司名稱,
@@ -28,12 +24,17 @@ export class FoodDataService {
           infoLink: p.相關資訊連結,
           calories: p.熱量大卡,
           regionCode: p.行政區域代碼,
-          capacity: p.容量
+          capacity: p.每一份量,
+          index: p.index
         } as FoodProduct))),
         take(1)
       )
       .subscribe(mappedData => {
         this.productsSignal.set(mappedData);
       });
+  }
+
+  public getProductByIndex(index: number) {
+    return this.products().find(product => product.index === index) || null;
   }
 }

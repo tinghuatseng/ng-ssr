@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
     <ul class="divide-y divide-gray-200">
       @for (product of results(); track $index) {
         <li class="py-4 flex">
-          <a [routerLink]="['/product', product.productName]" class="w-full">
+          <a [routerLink]="['/product', product.index]" class="w-full">
             <div class="ml-3">
               <p class="text-sm font-medium text-gray-900">{{ product.productName }}</p>
               <p class="text-sm text-gray-500">{{ product.brandName }}</p>

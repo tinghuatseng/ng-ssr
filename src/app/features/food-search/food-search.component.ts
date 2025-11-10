@@ -29,7 +29,8 @@ export class FoodSearchComponent {
       this.results.set([]);
       return;
     }
-    const searchResults = this.searchService.search(term);
-    this.results.set(searchResults);
+    this.searchService.search(term).then(searchResults => {
+      this.results.set(searchResults);
+    });
   }
 }

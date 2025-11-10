@@ -13,7 +13,11 @@ export const routes: Routes = [
     loadComponent: () => import('./profile/profile.component').then((m) => m.ProfileComponent),
   },
   {
+    path: 'product/:index',
+    loadComponent: () => import('./features/product-detail/product-detail.component').then((m) => m.ProductDetailComponent),
+  },
+  {
     path: '**',
-    redirectTo: 'about',
+    redirectTo: 'food-search',
   }
 ];

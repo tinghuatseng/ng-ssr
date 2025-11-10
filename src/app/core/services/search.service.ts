@@ -1,4 +1,4 @@
-import { Injectable, inject, Signal } from '@angular/core';
+import { Injectable, inject, Signal, signal } from '@angular/core';
 import { FoodDataService } from '@app/core/services/food-data.service';
 import { FoodProduct } from '@app/core/models/food-product.model';
 
@@ -7,14 +7,18 @@ import { FoodProduct } from '@app/core/models/food-product.model';
 })
 export class SearchService {
   private foodDataService = inject(FoodDataService);
-  private allProducts: Signal<FoodProduct[]> = this.foodDataService.products;
+  private allProducts: Signal<FoodProduct[]> = signal<FoodProduct[]>([]);
 
-  constructor() { }
+  constructor() {
 
-  search(term: string): FoodProduct[] {
+  }
+
+  async search(term: string): Promise<FoodProduct[]> {
     if (!term.trim()) {
       return [];
     }
+    await this.foodDataService.fetchProducts();
+    this.allProducts = this.foodDataService.products;
 
     const lowerCaseTerm = term.toLowerCase();
     const products = this.allProducts();
