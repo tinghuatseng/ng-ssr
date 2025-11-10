@@ -14,7 +14,8 @@ const browserDistFolder = resolve(serverDistFolder, '../browser');
 const app = express();
 app.set('trust proxy', true);
 const angularApp = new AngularNodeAppEngine();
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 /**
  * Example Express Rest API endpoints can be defined here.
  * Uncomment and define endpoints as necessary.
@@ -36,6 +37,17 @@ app.use(
     redirect: false,
   }),
 );
+
+// 取得專案路徑
+const apiDir = resolve(__dirname, '../../../api')
+
+/**
+ * Serve static files from /api
+ */
+app.use('/api/:file',(req, res) => {
+  const filePath = resolve(apiDir, req.params.file +'.json');
+  res.sendFile(filePath);
+});
 
 /**
  * Handle all other requests by rendering the Angular application.

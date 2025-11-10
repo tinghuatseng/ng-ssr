@@ -1,9 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchService } from '@app/core/services/search.service';
 import { FoodProduct } from '@app/core/models/food-product.model';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { FoodDataService } from '@app/core/services/food-data.service';
 
 @Component({
   selector: 'app-food-search',
@@ -19,17 +20,23 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     </div>
   `,
 })
-export class FoodSearchComponent {
+export class FoodSearchComponent  {
   private searchService = inject(SearchService);
+  private foodDataService = inject(FoodDataService);
 
   results = signal<FoodProduct[]>([]);
 
+  constructor() {
+    console.log("food-search component created");
+  }
   onSearch(term: string): void {
     if (!term) {
       this.results.set([]);
       return;
     }
-    const searchResults = this.searchService.search(term);
-    this.results.set(searchResults);
+    this.foodDataService.fetchProducts().subscribe(() => {
+      const res = this.searchService.search(term);
+      this.results.set(res);
+    });
   }
 }

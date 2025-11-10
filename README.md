@@ -174,3 +174,12 @@ Angular CLI 預設未包含端對端測試框架。您可以選擇適合您需�
 - **`/about` 請求** -> Nginx (`try_files`) -> 直接提供靜態 `about/index.html`
 - **`/*.js`, `/*.css` 請求** -> Nginx (`try_files`) -> 直接提供靜態資源
 - **其他頁面請求 (如 `/profile`)** -> Nginx (`try_files` 找不到檔案) -> Node.js (`server.ts`) -> 伺服器端渲染 (SSR)
+
+## 網路資源讀取流程
+```mermaid
+flowchart LR
+  A[使用者瀏覽器<br/>Client] -->D[Nginx Reverse Proxy]
+  D -->|規則匹配: /, /products 等| E{是否命中靜態 HTML?}
+  E -->|是 Pre-render| F[從 Nginx 本地快取/磁碟<br/>回傳 dist/browser/*.html]
+  E -->|否 需要 SSR | G[上游: Angular SSR Node Express]
+```

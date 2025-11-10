@@ -8,4 +8,6 @@ export interface FoodProduct {
   infoLink: string;        // 原: 相關資訊連結
   calories?: number | string; // 原: 熱量大卡
   regionCode?: string;    // 原: 行政區域代碼
+  capacity?: string;      // 原: 容量
+  index: number
 }
