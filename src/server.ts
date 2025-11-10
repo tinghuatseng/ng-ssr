@@ -45,7 +45,7 @@ const apiDir = resolve(__dirname, '../../../api')
  * Serve static files from /api
  */
 app.use('/api/:file',(req, res) => {
-  const filePath = resolve(apiDir, req.params.file);
+  const filePath = resolve(apiDir, req.params.file +'.json');
   res.sendFile(filePath);
 });
 
