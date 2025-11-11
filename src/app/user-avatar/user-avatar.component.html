@@ -1,0 +1,14 @@
+<img
+  *ngIf="avatarUrl"
+  [src]="avatarUrl"
+  [width]="size"
+  [height]="size"
+  class="rounded-full"
+  alt="User Avatar"
+/>
+<div
+  *ngIf="!avatarUrl"
+  [style.width.px]="size"
+  [style.height.px]="size"
+  class="rounded-full bg-gray-300"
+></div>
