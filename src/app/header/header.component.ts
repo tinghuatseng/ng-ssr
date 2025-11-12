@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy, signal, HostListener } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, computed, inject } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UserAvatarComponent } from '../user-avatar/user-avatar.component';
+import { UserService } from '../core/services/user.service';
 
 interface NavLink {
   text: string;
@@ -20,15 +21,23 @@ interface NavLink {
   },
 })
 export class HeaderComponent {
-  isLoggedIn = signal(false); // Mock data, replace with real auth state
-  user = signal({ name: 'Annie', avatarUrl: 'https://i.pravatar.cc/40' }); // Mock user data
+  private userService = inject(UserService);
+
+  isLoggedIn = computed(() => !!this.userService.currentUser());
+  user = computed(() => {
+    const currentUser = this.userService.currentUser();
+    return {
+      name: currentUser?.username || '',
+      avatarUrl: currentUser?.avatar || '',
+    };
+  });
+
   isMenuOpen = signal(false);
   isScrolled = signal(false);
 
-  navLinks = signal<NavLink[]>([
+  navLinks = computed<NavLink[]>(() => [
     { text: 'Food Search', url: '/food-search' },
     { text: 'About Us', url: '/about' },
-    { text: 'Login', url: '/login' },
   ]);
 
   toggleMenu(): void {

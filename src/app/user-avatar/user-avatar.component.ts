@@ -1,12 +1,12 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-user-avatar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './user-avatar.component.html',
   styleUrl: './user-avatar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserAvatarComponent {
   @Input() avatarUrl: string | undefined;

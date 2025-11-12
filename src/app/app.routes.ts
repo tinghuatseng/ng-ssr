@@ -9,6 +9,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/food-search/food-search.component').then((m) => m.FoodSearchComponent),
   },
   {
+    path: 'login',
+    loadComponent: () => import('./login/login.component').then((m) => m.LoginComponent),
+  },
+  {
     path: 'profile',
     loadComponent: () => import('./profile/profile.component').then((m) => m.ProfileComponent),
   },
