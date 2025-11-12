@@ -1,0 +1,17 @@
+@if (avatarUrl) {
+  <img
+    [src]="avatarUrl"
+    [width]="size"
+    [height]="size"
+    class="rounded-full"
+    alt="User Avatar"
+  />
+} @else {
+  <div
+    [style]="{
+      width: size + 'px',
+      height: size + 'px'
+    }"
+    class="rounded-full bg-gray-300"
+  ></div>
+}

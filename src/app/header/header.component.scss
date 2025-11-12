@@ -1,0 +1,25 @@
+/*
+  The .fixed class from Tailwind CSS is applied in the HTML.
+  These styles complement it and handle specific requirements.
+*/
+
+:host {
+  display: block;
+}
+
+header {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Smooth transition for the mobile menu */
+.md\\:hidden > div[ngif] {
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.md\\:hidden > div[ngif][style*="display: block"] {
+  max-height: 500px; /* Adjust as needed */
+  opacity: 1;
+}

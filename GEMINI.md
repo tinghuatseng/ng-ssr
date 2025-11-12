@@ -17,8 +17,8 @@
 
 ## Manual Additions
 
-- `best-practices.md`: Here is a set of instructions to help LLMs generate correct code that follows Angular best practices. 任何跟Angular實作相關之前都必須要參閱此份建議. 如果有其他建議請先詢問.
-- `llms-full.txt`: llms.txt is a proposed standard for websites designed to help LLMs better understand and process their content. this file to help LLMs and tools that use LLMs for code generation to create better modern Angular code. 任何跟Angular實作相關之前都必須要參閱此份建議. 如果有其他建議請先詢問.
+- `best-practices.md`: Here is a set of instructions to help LLMs generate correct code that follows Angular best practices. 任何跟程式碼實作相關之前都必須要參閱此份建議. 必須遵照此份說明實作，如果有其他建議請先詢問.
+- `llms-full.md`: llms.txt is a proposed standard for websites designed to help LLMs better understand and process their content. this file to help LLMs and tools that use LLMs for code generation to create better modern Angular code. 任何跟Angular實作相關之前都必須要參閱此份建議. 如果有其他建議請先詢問.
 - `*.feature`: 是 BDD 文件，所有需求實作以文件內容為優先，未經許可不得擅自修改文件內容.
 <!--
   MANUAL ADDITIONS:
