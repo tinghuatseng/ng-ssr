@@ -5,8 +5,6 @@
 
 :host {
   display: block;
-  /* Reserve space for the fixed header to prevent content from being obscured */
-  padding-top: 68px; /* Adjust this value based on the actual height of the header */
 }
 
 header {

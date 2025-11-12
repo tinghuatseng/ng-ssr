@@ -1,20 +1,28 @@
-<header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
-  <nav class="container mx-auto px-6 py-3">
-    <div class="flex items-center justify-between">
-      <a href="/" class="text-xl font-semibold text-gray-700">
-        <img src="favicon.ico" alt="Logo" class="h-8 inline-block mr-2" />
+<header
+  class="bg-white h-16 w-full flex items-center z-50"
+  [class.fixed]="isScrolled()"
+  [class.top-0]="isScrolled()"
+  [class.left-0]="isScrolled()"
+  [class.right-0]="isScrolled()"
+  [class.z-50]="isScrolled()"
+  [class.shadow-md]="isScrolled()">
+  <nav class="h-full w-full md:flex items-center justify-center z-50">
+    <div class="container flex items-center justify-between px-6 py-3">
+      <a href="/" class="text-xl font-semibold text-gray-700 flex items-center">
+        <img ngSrc="favicon.ico" alt="Logo" class="h-8 inline-block mr-2" width="32" height="32" />
         <span>Ng SSR</span>
       </a>
-      <div class="hidden md:flex items-center space-x-4">
-        <a *ngFor="let link of navLinks" [routerLink]="link.url" class="text-gray-600 hover:text-blue-500">{{ link.text }}</a>
-        <div *ngIf="isLoggedIn; else showLogin">
-          <a routerLink="/profile">
-            <app-user-avatar [avatarUrl]="user.avatarUrl" [size]="40"></app-user-avatar>
+      <div class="hidden md:flex items-center space-x-4 px-6 py-3">
+        @for (link of navLinks(); track link) {
+          <a [routerLink]="link.url" class="text-gray-600 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">{{ link.text }}</a>
+        }
+        @if (isLoggedIn()) {
+          <a routerLink="/profile" class="flex items-center">
+            <app-user-avatar [avatarUrl]="user().avatarUrl" [size]="40"></app-user-avatar>
           </a>
-        </div>
-        <ng-template #showLogin>
-          <a routerLink="/login" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Login</a>
-        </ng-template>
+        } @else {
+          <a routerLink="/login" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 text-sm font-medium">Login</a>
+        }
       </div>
       <div class="md:hidden">
         <button (click)="toggleMenu()" class="text-gray-600 hover:text-blue-500 focus:outline-none">
@@ -24,17 +32,22 @@
         </button>
       </div>
     </div>
-    <div *ngIf="isMenuOpen" class="md:hidden mt-4">
-      <a *ngFor="let link of navLinks" [routerLink]="link.url" class="block py-2 text-gray-600 hover:text-blue-500">{{ link.text }}</a>
-      <div *ngIf="isLoggedIn; else showMobileLogin" class="mt-2">
-        <a routerLink="/profile" class="flex items-center">
-          <app-user-avatar [avatarUrl]="user.avatarUrl" [size]="32"></app-user-avatar>
-          <span class="ml-2 text-gray-700">{{ user.name }}</span>
-        </a>
+    @if (isMenuOpen()) {
+      <div class="md:hidden space-y-2  bg-white z-50 px-6 py-3">
+        @for (link of navLinks(); track link) {
+          <a [routerLink]="link.url" class="block py-2 px-3 text-gray-600 hover:text-blue-500 rounded-md text-base font-medium">{{ link.text }}</a>
+        }
+        @if (isLoggedIn()) {
+          <div class="mt-2">
+            <a routerLink="/profile" class="flex items-center block py-2 px-3 text-gray-600 hover:text-blue-500 rounded-md text-base font-medium">
+              <app-user-avatar [avatarUrl]="user().avatarUrl" [size]="32"></app-user-avatar>
+              <span class="ml-2 text-gray-700">{{ user().name }}</span>
+            </a>
+          </div>
+        } @else {
+          <a routerLink="/login" class="block mt-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 text-base font-medium">Login</a>
+        }
       </div>
-      <ng-template #showMobileLogin>
-        <a routerLink="/login" class="block mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Login</a>
-      </ng-template>
-    </div>
+    }
   </nav>
 </header>

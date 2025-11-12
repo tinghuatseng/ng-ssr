@@ -16,7 +16,7 @@ import { Subject } from 'rxjs';
         placeholder="搜尋產品或品牌..."
         formControlName="search"
       />
-      <button type="submit">搜尋</button>
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 text-sm font-medium">搜尋</button>
     </form>
   `,
 })
