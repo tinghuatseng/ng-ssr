@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../core/services/user.service';
 import { CommonModule } from '@angular/common';
 import { UserAvatarComponent } from '../user-avatar/user-avatar.component';
@@ -7,7 +7,7 @@ import { UserAvatarComponent } from '../user-avatar/user-avatar.component';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, UserAvatarComponent],
+  imports: [CommonModule, RouterModule, UserAvatarComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })

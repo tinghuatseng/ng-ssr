@@ -40,6 +40,10 @@ export class HeaderComponent {
     { text: 'About Us', url: '/about' },
   ]);
 
+  constructor() {
+    console.log('HeaderComponent initialized');
+  }
+
   toggleMenu(): void {
     this.isMenuOpen.update(open => !open);
   }
