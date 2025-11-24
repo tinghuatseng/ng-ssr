@@ -32,9 +32,11 @@ const __dirname = dirname(__filename);
  */
 app.use(
   express.static(browserDistFolder, {
-    maxAge: '1y',
+    maxAge: '0',
     index: false,
     redirect: false,
+    etag: false,
+    lastModified: false,
   }),
 );
 
