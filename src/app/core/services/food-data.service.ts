@@ -12,7 +12,7 @@ export class FoodDataService {
 
   private productsSignal = signal<FoodProduct[]>([]);
   public products = this.productsSignal.asReadonly();
-
+  public productId = signal<number | null>(null);
   public fetchProducts(): Observable<FoodProduct[]> {
     console.log("Fetching products from FoodDataService");
     if( this.productsSignal().length > 0 ) {

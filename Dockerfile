@@ -6,14 +6,9 @@ FROM node:trixie-slim AS builder
 WORKDIR /app
 
 # 複製 package.json 和 package-lock.json
-COPY package*.json ./
-
+COPY . .
 # 安裝所有依賴（包含開發依賴，用於建置）
 RUN npm install
-
-# 複製整個專案的原始碼
-COPY . .
-
 # 執行建置指令
 RUN npm run build
 

@@ -1,12 +1,13 @@
-import { Component, input } from '@angular/core';
+import { FoodDataService } from '@app/core/services/food-data.service';
+import { Component, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FoodProduct } from '@app/core/models/food-product.model';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-results',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   template: `
     <table>
       <thead>
@@ -25,7 +26,7 @@ import { RouterLink } from '@angular/router';
           <tr>
             <td>{{ product.index }}</td>
             <td>
-              <a [routerLink]="['/product', product.index]" class="w-full">
+              <a (click)="goProductDetail(product.index)" class="w-full">
                 {{ product.productName }}
               </a>
             </td>
@@ -43,4 +44,10 @@ import { RouterLink } from '@angular/router';
 })
 export class SearchResultsComponent {
   results = input.required<FoodProduct[]>();
+  foodDataService = inject(FoodDataService);
+  router = inject(Router);
+  goProductDetail(index: number) {
+    this.foodDataService.productId.set(index);
+    this.router.navigate(['/product', index]);
+  }
 }
